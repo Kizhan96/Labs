@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double i, p_r, p_y, p_g, r, y, g, h;
+    cout << "Input number of red events: ";
+    cin >> r;
+    cout << "Input number of yellow events: ";
+    cin >> y;
+    cout << "Input number of green events: ";
+    cin >> g;
+    
+    cout << "******************************************************* \n";
+    cout << "Output: \n";
+    cout << "Red event probability: ";
+    p_r = r / (r + y + g);
+    p_y = y / (r + y + g);
+    p_g = g / (r + y + g);
+    cout << p_r << endl;
+    cout << "Info ammout: ";
+    i = log(1 / p_r) / log(2);
+    cout << i << endl;
+
+    cout << "Eny event info amount: ";
+    h = p_r * (log(1 / p_r) / log(2))
+        + p_y * (log(1 / p_y) / log(2))
+        + p_g * (log(1 / p_g) / log(2));
+    cout << h << endl;
+    system("pause");
+	return 0;
+}
