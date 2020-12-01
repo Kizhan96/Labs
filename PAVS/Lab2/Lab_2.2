@@ -1,0 +1,95 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+using namespace std;
+void show_char_vector(vector<char>& a_vec)
+{
+    for (vector<char>::iterator it = a_vec.begin(); it != a_vec.end(); ++it)
+        cout << *it << "\t";
+}
+
+int code_length_counter(int number_of_chars)
+{
+    if (number_of_chars > 0 && number_of_chars <= 1)
+    {
+        return 1;
+    }
+    else if (number_of_chars > 1 && number_of_chars <= 2)
+    {
+        return 2;
+    }
+    else if (number_of_chars > 2 && number_of_chars <= 4)
+    {
+        return 3;
+    }
+    else if (number_of_chars > 4 && number_of_chars <= 8)
+    {
+        return 4;
+    }
+    else if (number_of_chars > 8 && number_of_chars <= 16)
+    {
+        return 5;
+    }
+    else if (number_of_chars > 16 && number_of_chars <= 32)
+    {
+        return 6;
+    }
+    else if (number_of_chars > 32 && number_of_chars <= 64)
+    {
+        return 7;
+    }
+    else if (number_of_chars > 64 && number_of_chars <= 128)
+    {
+        return 8;
+    }
+}
+
+long dvoich(int x1)
+{
+    int i, b;
+    long c = 0;
+    for (i = 0; x1 > 0; i++)
+    {
+        b = x1 % 2;
+        x1 = (x1 - b) / 2;
+        c += b * pow(10, i);
+    }
+
+    return c;
+};
+
+int main() {
+    int char_amount = 0;
+    string pos_num = "";
+    char enter[200]; //string
+    cout << "Input a string to encrypt: ";
+    int kol[256] = { 0 }; //array of all symbols
+    vector<char> chars;
+    vector<int> codes;
+    cin.getline(enter, 200); //string input
+
+    for (int i = 0; enter[i] != 0; i++) {//
+        kol[enter[i]]++; //symbol code as index
+    }
+
+    for (int i = 0; i < 256; i++) {//output cycle
+        if (kol[i] != 0) {
+            cout << (char)i << " meets " << kol[i] << " times\n";
+            chars.push_back((char)i);
+            char_amount++;
+        }
+    }
+    cout << "Number of unic chars in string: " << char_amount << endl;  
+    show_char_vector(chars);
+    
+    for (size_t iter = 1; iter < char_amount + 1; iter++)
+    {
+        codes.push_back(dvoich(iter));
+    }
+    cout << endl;
+    
+    for (vector<int>::iterator it = codes.begin(); it != codes.end(); ++it)
+        cout << setw(code_length_counter(char_amount)) << setfill('0') <<*it << "\t";
+    
+    return 0;
+}
