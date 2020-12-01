@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string tmp;
+	int result = 0;
+	cout << "Input binary digit: ";
+	cin >> tmp;
+	for (size_t iter = 0; iter < tmp.size(); iter++)
+	{
+		result += int(tmp[iter]) - 48;
+	}
+	cout << "Sum of each bit: " << result << endl;
+	if (result % 2 == 1)
+	{
+		cout << "The digit is odd.";
+	}
+	else
+	{
+		cout << "The digit is even.";
+	}
+	return 0;
+}
